@@ -4,6 +4,7 @@ from pathlib import Path
 
 
 def run_workflow():
+    """Run the YouTube Transcription Workflow"""
     # Parse command line arguments
     parser = argparse.ArgumentParser(description="YouTube Transcription Workflow")
     parser.add_argument("--youtube-url", "-y", required=True, help="YouTube video URL")
@@ -34,12 +35,12 @@ def run_workflow():
         )
         
         audio_filename = Path(temp_dir).joinpath(f"{base_filename}.opus")
-        wav_filename = Path(temp_dir).joinpath(f"{base_filename}.wav") 
+        wav_filename = Path(temp_dir).joinpath(f"{base_filename}.wav")
         txt_filename = Path(temp_dir).joinpath(f"{base_filename}.txt")
 
         print("Converting audio to WAV format...")
         subprocess.run(
-            ["ffmpeg", "-i", str(audio_filename), "-ar", "16000", str(wav_filename)], 
+            ["ffmpeg", "-i", str(audio_filename), "-ar", "16000", str(wav_filename)],
             check=True,
             capture_output=True,  # Suppress ffmpeg output
         )
